@@ -14,15 +14,13 @@ public class UserRepository {
 
     public User createUser(User user) {
         var session = sessionFactory.getCurrentSession();
-        session.save("user", user);
-        session.flush();
+        session.save(user);
         return user;
     }
 
     public UserResponse getUserById(long id) {
         var session = sessionFactory.getCurrentSession();
         var user = session.get(User.class, id);
-        session.flush();
         return new UserResponse(user.getId(), user.getName());
     }
 }
